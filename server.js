@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/api/compare', async (req, res) => {
-  const { companies, age, gender, smoke } = req.body;
+  const { companies, age, gender, smoke, amount } = req.body;
 
   if (!companies || companies.length === 0) {
     return res.status(400).json({ error: 'נדרשת לפחות חברה אחת' });
@@ -16,23 +16,21 @@ app.post('/api/compare', async (req, res) => {
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'API Key חסר — הגדר ANTHROPIC_API_KEY' });
+    return res.status(500).json({ error: 'API Key חסר' });
   }
 
   const list = companies.join(', ');
   const isSingle = companies.length === 1;
+  const ageCtx = age ? `לקוח גיל ${age}${gender ? ' ' + gender : ''}${smoke ? ' ' + smoke : ''}.` : '';
+  const ageNote = age ? `התאם לגיל ${age}: ציין מה רלוונטי ומה לא.` : '';
 
-  const ageContext = age
-    ? `הלקוח בגיל ${age}${gender ? ', מין: ' + gender : ''}${smoke ? ', ' + smoke : ''}. `
-    : '';
+  const jsonSingle = `{"summary":"","product_name":"","max_sum":"","diseases_count":"","groups":"","waiting_period":"","unique":[],"pros":[],"cons":[],"best_for":[],"age_recommendation":""}`;
 
-  const ageInstructions = age
-    ? `חשוב: התאם את ההמלצה לגיל ${age}. ציין בבירור אילו כיסויים רלוונטיים ואילו לא לגיל זה (לדוגמה: סכרת נעורים לא רלוונטית מעל גיל 21, צינתור לב רלוונטי מגיל 45+, כיסויים אורתופדיים רלוונטיים מגיל 55+). דרג את החברות לפי התאמה לגיל הספציפי. `
-    : '';
+  const jsonMulti = `{"companies":[{"name":"","product":"","color":"#1B3A6B","max_sum":"","diseases":"","groups":"","waiting":"","cancer_recur":"","pros":[],"cons":[],"unique":[],"score_coverage":80,"score_service":75,"score_simplicity":70,"score_value":75,"age_fit":"מתאים"}],"comparison_table":[{"param":"","values":[]}],"recommendations":[{"profile":"","company":"","reason":""}],"critical_diffs":[],"summary":"","age_recommendation":""}`;
 
   const prompt = isSingle
-    ? `אתה מומחה לביטוח בריאות בישראל. ${ageContext}נתח את פוליסת מחלות קשות של ${list}. ${ageInstructions}החזר JSON בלבד ללא markdown ולא שום טקסט אחר: {"summary":"","product_name":"","max_sum":"","diseases_count":"","groups":"","waiting_period":"","unique":[],"pros":[],"cons":[],"best_for":[],"age_relevant":[],"age_irrelevant":[]}`
-    : `אתה מומחה לביטוח בריאות בישראל. ${ageContext}השווה בין פוליסות מחלות קשות של: ${list}. ${ageInstructions}החזר JSON בלבד ללא markdown ולא שום טקסט אחר: {"companies":[{"name":"","product":"","color":"#1B3A6B","max_sum":"","diseases":"","groups":"","waiting":"","cancer_recur":"","insitu":"","unique_service":"","pros":[],"cons":[],"unique":[],"age_fit":"מתאים מאוד/מתאים/פחות מתאים","score_coverage":85,"score_service":80,"score_simplicity":75,"score_value":78,"score_age_fit":90}],"comparison_table":[{"param":"","values":[]}],"recommendations":[{"profile":"","company":"","reason":""}],"critical_diffs":[],"summary":"","age_recommendation":""}. הוסף לפחות 15 שורות ב-comparison_table ו-8 המלצות. צבעים: מגדל #1B3A6B, מנורה #1A5E2A, פניקס #C0392B, AIG #003087, הראל #8E44AD, כלל #E67E22, איילון #16A085, הכשרה #2980B9.`;
+    ? `מומחה ביטוח בריאות ישראל. ${ageCtx} נתח מחלות קשות של ${list}. ${ageNote} החזר JSON בלבד: ${jsonSingle}`
+    : `מומחה ביטוח בריאות ישראל. ${ageCtx} השווה מחלות קשות: ${list}. ${ageNote} הוסף 8 שורות ב-comparison_table ו-4 המלצות. צבעים: מגדל #1B3A6B, מנורה #1A5E2A, פניקס #C0392B, AIG #003087, הראל #8E44AD, כלל #E67E22, איילון #16A085, הכשרה #2980B9. החזר JSON בלבד: ${jsonMulti}`;
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
