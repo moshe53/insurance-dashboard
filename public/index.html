@@ -409,8 +409,7 @@ async function exportWord(){
     var docx=await import('https://esm.sh/docx@8.5.0');
     var fileSaver=await import('https://esm.sh/file-saver@2.0.5');
     var Document=docx.Document,Packer=docx.Packer,Paragraph=docx.Paragraph,TextRun=docx.TextRun,Table=docx.Table,TableRow=docx.TableRow,TableCell=docx.TableCell,AlignmentType=docx.AlignmentType,BorderStyle=docx.BorderStyle,WidthType=docx.WidthType,ShadingType=docx.ShadingType,VerticalAlign=docx.VerticalAlign;
-   var saveAs=fileSaver.default||fileSaver.saveAs||fileSaver;
-if(typeof saveAs!=='function'&&saveAs.saveAs)saveAs=saveAs.saveAs;
+  var saveAs=window.saveAs;
     var cos=lastResult.companies||[];
     var b1=function(c){return{style:BorderStyle.SINGLE,size:1,color:c||'CCCCCC'};};
     var aB=function(){var b=b1();return{top:b,bottom:b,left:b,right:b};};
