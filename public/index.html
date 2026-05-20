@@ -232,7 +232,7 @@ async function compare(){
     var data=await r.json();
     if(!r.ok)throw new Error(data.error||'שגיאה');
     lastResult=data;
-    history.unshift({req:req,result:data,ts:new Date().toLocaleTimeString('he-IL')});
+   historyList.unshift({req:req,result:data,ts:new Date().toLocaleTimeString('he-IL')});
     renderResult(data,req);
     addHistory();
   }catch(e){
