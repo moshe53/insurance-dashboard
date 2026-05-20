@@ -407,7 +407,7 @@ async function exportWord(){
   var btn=document.getElementById('wordBtn');btn.textContent='⏳ מכין...';btn.disabled=true;
   try{
     var docx=await import('https://esm.sh/docx@8.5.0');
-    var fileSaver=await import('https://esm.sh/file-saver@2.0.5');
+  
     var Document=docx.Document,Packer=docx.Packer,Paragraph=docx.Paragraph,TextRun=docx.TextRun,Table=docx.Table,TableRow=docx.TableRow,TableCell=docx.TableCell,AlignmentType=docx.AlignmentType,BorderStyle=docx.BorderStyle,WidthType=docx.WidthType,ShadingType=docx.ShadingType,VerticalAlign=docx.VerticalAlign;
   var saveAs=window.saveAs;
     var cos=lastResult.companies||[];
@@ -439,5 +439,6 @@ async function exportWord(){
   btn.textContent='📄 ייצא Word';btn.disabled=false;
 }
 </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 </body>
 </html>
