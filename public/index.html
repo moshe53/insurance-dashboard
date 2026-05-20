@@ -3,110 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>השוואת מחלות קשות | דשבורד סוכן ביטוח</title>
+<title>מרכז ביטוח ורנר | השוואת מחלות קשות</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root{
+  --navy:#1B2E4B;--navy-dark:#0F1E33;--navy-light:#2A4A70;
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-pale:#FDF6E7;
+  --teal:#0E7C6B;--teal-light:#12A08B;--teal-pale:#E8F7F5;
+  --red:#C0392B;--red-pale:#FDEEEC;
+  --bg:#F4F6F9;--surface:#FFFFFF;
+  --text:#1A2332;--text-muted:#6B7A8D;--text-light:#9AA5B4;
+  --border:#E2E8F0;--border-strong:#C8D3E0;
+  --radius:10px;--radius-lg:14px;--radius-xl:18px;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.05);
+  --shadow-lg:0 4px 16px rgba(0,0,0,.1),0 8px 32px rgba(0,0,0,.06);
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#F7F8FA;color:#2C3E50;direction:rtl}
-header{background:#1B2A3B;padding:0 24px;height:56px;display:flex;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-header span{color:#fff;font-size:19px;font-weight:600}
-header small{color:#8899AA;font-size:12px;margin-right:auto}
-.wrap{max-width:1100px;margin:0 auto;padding:24px 16px}
-.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);border:1px solid #E8ECF0}
-h2{font-size:16px;font-weight:600;margin-bottom:4px}
-.sub{font-size:13px;color:#666;margin-bottom:16px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.chip{padding:5px 14px;border-radius:100px;border:1.5px solid #D0D7DE;background:#fff;color:#444;font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit}
-.chip:hover{border-color:#999}
-.chip.on{color:#fff;border-color:transparent}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
-.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:16px}
-label{font-size:12px;color:#888;display:block;margin-bottom:4px}
-input,select{width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #D8DDE3;font-size:14px;font-family:inherit;outline:none;direction:rtl;background:#fff;color:#2C3E50}
-input:focus,select:focus{border-color:#3498DB}
-.age-hint{margin-bottom:16px;padding:10px 14px;background:#EBF5FB;border-radius:8px;border-right:4px solid #3498DB;font-size:13px;color:#1A5276;display:none}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;-webkit-font-smoothing:antialiased}
+
+/* HEADER */
+header{
+  background:var(--navy-dark);
+  padding:0 32px;height:64px;
+  display:flex;align-items:center;gap:16px;
+  position:sticky;top:0;z-index:100;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.header-brand{display:flex;align-items:center;gap:10px}
+.header-icon{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.header-title{color:#fff;font-size:17px;font-weight:600;letter-spacing:-.3px}
+.header-sub{color:rgba(255,255,255,.45);font-size:12px;font-weight:300}
+.header-badge{margin-right:auto;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold-light);font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500}
+
+/* LAYOUT */
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px}
+
+/* CARD */
+.card{background:var(--surface);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:3px}
+.card-sub{font-size:13px;color:var(--text-muted);margin-bottom:18px}
+
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.chip{padding:6px 15px;border-radius:100px;border:1.5px solid var(--border-strong);background:var(--surface);color:var(--text-muted);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;letter-spacing:-.2px}
+.chip:hover{border-color:var(--navy-light);color:var(--navy)}
+.chip.on{color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+
+/* INPUTS */
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+label{font-size:11px;font-weight:600;color:var(--text-muted);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+input,select{width:100%;padding:10px 13px;border-radius:var(--radius);border:1.5px solid var(--border);font-size:14px;font-family:'Heebo',sans-serif;outline:none;direction:rtl;background:var(--surface);color:var(--text);transition:border-color .15s}
+input:focus,select:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(42,74,112,.1)}
+input::placeholder{color:var(--text-light)}
+
+/* AGE HINT */
+.age-hint{margin-bottom:16px;padding:12px 16px;background:var(--teal-pale);border-radius:var(--radius);border-right:3px solid var(--teal);font-size:13px;color:var(--teal);display:none;line-height:1.5}
 .age-hint b{font-weight:600}
-.btns{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.btn-go{padding:10px 28px;border-radius:8px;background:#1B3A6B;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
-.btn-go:hover{background:#154060}
-.btn-go:disabled{background:#ccc;cursor:not-allowed}
-.btn-sec{padding:10px 16px;border-radius:8px;background:transparent;border:1.5px solid #D8DDE3;font-size:14px;cursor:pointer;color:#666;font-family:inherit}
-.btn-sec:hover{background:#f5f5f5}
-.btn-word{padding:10px 18px;border-radius:8px;background:#1E8449;color:#fff;border:none;font-size:14px;cursor:pointer;font-weight:600;font-family:inherit;display:none}
-.btn-word:hover{background:#176037}
-.loading{text-align:center;padding:40px;color:#555}
-.loading-spin{width:40px;height:40px;border:4px solid #eee;border-top-color:#1B3A6B;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.error-box{background:#FEE2E2;border:1px solid #F87171;border-radius:8px;padding:12px 16px;color:#991B1B;font-size:14px;margin-bottom:16px}
-.summary-banner{background:linear-gradient(135deg,#1B3A6B,#2980B9);border-radius:12px;padding:16px 20px;margin-bottom:20px;color:#fff;font-size:15px;line-height:1.6}
-.age-rec{background:#EBF5FB;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:14px;color:#1A5276;border:1px solid #AED6F1}
-.tabs{display:flex;gap:4px;margin-bottom:16px;background:#fff;border-radius:10px;padding:4px;border:1px solid #E8ECF0}
-.tab{flex:1;padding:8px 4px;border-radius:7px;border:none;font-size:13px;cursor:pointer;font-family:inherit;color:#555;background:transparent}
-.tab.on{background:#1B3A6B;color:#fff;font-weight:600}
+
+/* BUTTONS */
+.btns{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.btn-go{
+  padding:11px 30px;border-radius:var(--radius);
+  background:var(--navy);color:#fff;border:none;
+  font-size:14px;font-weight:600;cursor:pointer;
+  font-family:'Heebo',sans-serif;letter-spacing:-.2px;
+  transition:all .15s;position:relative;overflow:hidden;
+}
+.btn-go:hover:not(:disabled){background:var(--navy-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(27,46,75,.3)}
+.btn-go:active:not(:disabled){transform:translateY(0)}
+.btn-go:disabled{background:#C8D3E0;cursor:not-allowed;color:#fff}
+.btn-go.pulse::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);animation:pulse-anim .6s ease-out}
+@keyframes pulse-anim{0%{opacity:1}100%{opacity:0}}
+.btn-sec{padding:11px 16px;border-radius:var(--radius);background:transparent;border:1.5px solid var(--border);font-size:13px;cursor:pointer;color:var(--text-muted);font-family:'Heebo',sans-serif;transition:all .15s}
+.btn-sec:hover{background:var(--bg);border-color:var(--border-strong);color:var(--text)}
+.btn-word{padding:11px 18px;border-radius:var(--radius);background:var(--teal);color:#fff;border:none;font-size:13px;cursor:pointer;font-weight:600;font-family:'Heebo',sans-serif;display:none;transition:all .15s;margin-right:auto}
+.btn-word:hover{background:var(--teal-light)}
+
+/* ERROR */
+.error-box{background:var(--red-pale);border:1px solid rgba(192,57,43,.2);border-right:3px solid var(--red);border-radius:var(--radius);padding:12px 16px;color:var(--red);font-size:14px;margin-bottom:16px}
+
+/* LOADING */
+.loading{padding:60px 20px;text-align:center}
+.loading-steps{display:flex;justify-content:center;gap:8px;margin-bottom:24px}
+.step-dot{width:10px;height:10px;border-radius:50%;background:var(--border);animation:dot-bounce 1.4s ease-in-out infinite}
+.step-dot:nth-child(2){animation-delay:.2s}
+.step-dot:nth-child(3){animation-delay:.4s}
+@keyframes dot-bounce{0%,60%,100%{transform:translateY(0);background:var(--border)}30%{transform:translateY(-10px);background:var(--navy)}}
+.loading-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}
+.loading-sub{font-size:13px;color:var(--text-muted)}
+.loading-progress{width:200px;height:3px;background:var(--border);border-radius:2px;margin:16px auto 0;overflow:hidden}
+.loading-bar{height:100%;background:linear-gradient(90deg,var(--navy),var(--teal));border-radius:2px;animation:progress-anim 2s ease-in-out infinite}
+@keyframes progress-anim{0%{width:0%;margin-right:100%}50%{width:60%;margin-right:20%}100%{width:0%;margin-right:100%}}
+
+/* SUMMARY BANNER */
+.summary-banner{background:var(--navy);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:20px;color:#fff}
+.summary-label{font-size:11px;font-weight:600;letter-spacing:.8px;opacity:.5;margin-bottom:6px;text-transform:uppercase}
+.summary-text{font-size:15px;line-height:1.6;font-weight:300}
+
+/* AGE REC */
+.age-rec{background:var(--teal-pale);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;font-size:14px;color:var(--teal);border:1px solid rgba(14,124,107,.15);line-height:1.5}
+.age-rec-icon{font-size:16px;margin-left:6px}
+
+/* TABS */
+.tabs{display:flex;gap:2px;margin-bottom:20px;background:var(--bg);border-radius:var(--radius-lg);padding:4px;border:1px solid var(--border)}
+.tab{flex:1;padding:9px 6px;border-radius:var(--radius);border:none;font-size:13px;font-weight:500;cursor:pointer;font-family:'Heebo',sans-serif;color:var(--text-muted);background:transparent;transition:all .15s}
+.tab:hover{color:var(--text);background:rgba(255,255,255,.6)}
+.tab.on{background:var(--surface);color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.1);font-weight:600}
+
+/* CO CARDS */
 .co-grid{display:grid;gap:16px}
-.co-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.09);border:1px solid #E8ECF0}
-.co-head{padding:14px 16px;color:#fff}
-.co-name{font-size:18px;font-weight:700}
-.co-prod{font-size:12px;opacity:.85;margin-top:2px}
-.co-body{padding:16px}
+.co-card{background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:box-shadow .2s}
+.co-card:hover{box-shadow:var(--shadow-lg)}
+.co-head{padding:16px 18px;color:#fff;position:relative}
+.co-head-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:rgba(255,255,255,.3)}
+.co-name{font-size:19px;font-weight:700;letter-spacing:-.3px}
+.co-prod{font-size:12px;opacity:.75;margin-top:2px;font-weight:300}
+.co-fit-badge{display:inline-block;margin-top:8px;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;background:rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(4px)}
+.co-body{padding:16px 18px}
 .kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.kv{background:#F7F8FA;border-radius:7px;padding:8px 10px}
-.kv-label{font-size:10px;color:#888;margin-bottom:2px}
-.kv-val{font-size:12px;font-weight:600}
-.score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.score-label{font-size:11px;color:#666;width:80px;flex-shrink:0}
-.score-bar{flex:1;height:6px;background:#eee;border-radius:3px;overflow:hidden}
-.score-fill{height:100%;border-radius:3px}
-.score-num{font-size:11px;color:#999;width:24px;text-align:left;flex-shrink:0}
-.age-fit-badge{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;margin-top:8px;font-weight:600}
-.fit-great{background:#D5F5E3;color:#1E8449}
-.fit-ok{background:#FEF9E7;color:#B7950B}
-.fit-less{background:#FADBD8;color:#C0392B}
-.unique-section{margin-top:14px}
-.unique-label{font-size:12px;font-weight:600;margin-bottom:6px}
-.unique-item{font-size:12px;padding:5px 8px;border-radius:5px;margin-bottom:4px;border-right:3px solid transparent}
-.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.pc-col{background:#F7F8FA;border-radius:7px;padding:10px}
-.pc-head{font-size:11px;font-weight:600;margin-bottom:6px}
-.pc-item{font-size:11px;color:#555;padding:3px 0;border-bottom:.5px solid #eee;line-height:1.4}
+.kv{background:var(--bg);border-radius:8px;padding:8px 11px}
+.kv-label{font-size:10px;font-weight:600;color:var(--text-light);margin-bottom:2px;text-transform:uppercase;letter-spacing:.4px}
+.kv-val{font-size:12px;font-weight:600;color:var(--text)}
+.score-wrap{margin-bottom:14px}
+.score-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.score-label{font-size:11px;color:var(--text-muted);width:72px;flex-shrink:0;text-align:left}
+.score-bar{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px;transition:width 1s ease}
+.score-num{font-size:11px;color:var(--text-light);width:28px;text-align:left;flex-shrink:0}
+.section-head{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;margin-top:14px}
+.unique-item{font-size:12px;padding:5px 10px;border-radius:7px;margin-bottom:4px;border-right:2px solid transparent;background:var(--bg);color:var(--text)}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.pc-col{border-radius:8px;padding:10px 12px}
+.pc-col-pro{background:var(--teal-pale);border:1px solid rgba(14,124,107,.12)}
+.pc-col-con{background:var(--red-pale);border:1px solid rgba(192,57,43,.12)}
+.pc-head{font-size:11px;font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.pc-head-pro{color:var(--teal)}
+.pc-head-con{color:var(--red)}
+.pc-item{font-size:11px;padding:3px 0;border-bottom:.5px solid rgba(0,0,0,.06);line-height:1.4;color:var(--text)}
 .pc-item:last-child{border-bottom:none}
+
+/* TABLE */
+.cmp-table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border)}
 .cmp-table{width:100%;border-collapse:collapse;font-size:13px}
-.cmp-table th{padding:10px 14px;background:#F7F8FA;color:#666;text-align:right;font-weight:600;border-bottom:1px solid #EAECEF;white-space:nowrap}
-.cmp-table th.co-th{text-align:center;color:#fff}
-.cmp-table td{padding:8px 14px;border-bottom:1px solid #EAECEF;text-align:right;color:#444}
-.cmp-table td.co-td{text-align:center}
-.cmp-table tr:hover td{background:#F7F8FA}
-.reco-item{padding:12px 16px;border-bottom:1px solid #F0F2F5;display:flex;gap:14px;align-items:flex-start}
+.cmp-table th{padding:11px 14px;background:var(--navy);color:rgba(255,255,255,.9);text-align:right;font-weight:600;font-size:12px;letter-spacing:.2px;white-space:nowrap}
+.cmp-table th.param-head{background:var(--navy-dark)}
+.cmp-table td{padding:9px 14px;border-bottom:.5px solid var(--border);color:var(--text);font-size:12px}
+.cmp-table td.param-cell{font-weight:600;color:var(--text-muted);background:var(--bg);font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.cmp-table tr:last-child td{border-bottom:none}
+.cmp-table tr.highlight-row td{background:var(--gold-pale)}
+.cmp-table tr.highlight-row td.param-cell{background:#F5EDD0}
+.cmp-table tr:hover td:not(.param-cell){background:rgba(27,46,75,.03)}
+
+/* RECO */
+.reco-item{padding:14px 18px;border-bottom:.5px solid var(--border);display:flex;gap:14px;align-items:flex-start;transition:background .1s}
 .reco-item:last-child{border-bottom:none}
-.reco-bar{width:4px;border-radius:2px;flex-shrink:0;align-self:stretch}
-.reco-profile{font-weight:600;font-size:14px;margin-bottom:4px}
-.reco-detail{font-size:13px;color:#555}
-.co-badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;color:#fff;margin-left:8px;font-weight:600}
-.diff-item{padding:12px 16px;border-bottom:1px solid #F0F2F5;display:flex;gap:12px}
+.reco-item:hover{background:var(--bg)}
+.reco-bar{width:3px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:40px}
+.reco-profile{font-weight:600;font-size:14px;margin-bottom:4px;color:var(--text)}
+.reco-detail{font-size:13px;color:var(--text-muted);line-height:1.5}
+.co-badge{display:inline-block;font-size:11px;padding:2px 9px;border-radius:5px;color:#fff;margin-left:8px;font-weight:600;vertical-align:1px}
+
+/* DIFFS */
+.diff-item{padding:14px 18px;border-bottom:.5px solid var(--border);display:flex;gap:12px;align-items:flex-start}
 .diff-item:last-child{border-bottom:none}
-.diff-num{width:24px;height:24px;border-radius:50%;background:#E74C3C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
-.diff-text{font-size:14px;line-height:1.6}
+.diff-num{width:26px;height:26px;border-radius:50%;background:var(--red-pale);color:var(--red);border:1px solid rgba(192,57,43,.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.diff-text{font-size:13px;line-height:1.6;color:var(--text)}
+
+/* HISTORY */
 .hist-area{margin-top:24px}
-.hist-label{font-size:14px;color:#888;margin-bottom:10px;font-weight:500}
+.hist-label{font-size:12px;font-weight:600;color:var(--text-light);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
 .hist-chips{display:flex;gap:8px;flex-wrap:wrap}
-.hist-chip{padding:5px 12px;border-radius:7px;border:1px solid #D8DDE3;background:#fff;font-size:12px;cursor:pointer;color:#555;font-family:inherit}
-.hist-chip:hover{background:#f5f5f5}
-footer{margin-top:40px;padding:20px 16px;border-top:1px solid #E8ECF0;text-align:center;direction:rtl}
-.footer-warn{font-size:13px;color:#E74C3C;font-weight:600;margin-bottom:8px}
-.footer-copy{font-size:12px;color:#888;margin-top:8px}
+.hist-chip{padding:5px 13px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);font-size:12px;cursor:pointer;color:var(--text-muted);font-family:'Heebo',sans-serif;transition:all .15s}
+.hist-chip:hover{border-color:var(--navy-light);color:var(--navy)}
+
+/* FOOTER */
+footer{margin-top:48px;padding:24px 20px;border-top:1px solid var(--border);max-width:1120px;margin-left:auto;margin-right:auto}
+.footer-warn{font-size:12px;color:var(--red);margin-bottom:8px;line-height:1.6;padding:10px 14px;background:var(--red-pale);border-radius:var(--radius);border-right:3px solid var(--red)}
+.footer-copy{font-size:11px;color:var(--text-light);text-align:center;margin-top:12px}
+
 @media(max-width:600px){.grid3,.grid4{grid-template-columns:1fr 1fr}.co-grid{grid-template-columns:1fr!important}.pros-cons{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <header>
-  <span>🏥 השוואת מחלות קשות</span>
-  <small>כלי מקצועי לסוכני ביטוח</small>
+  <div class="header-brand">
+    <div class="header-icon">🛡</div>
+    <div>
+      <div class="header-title">מרכז ביטוח ורנר</div>
+      <div class="header-sub">השוואת מחלות קשות — נתונים מפוליסות רשמיות</div>
+    </div>
+  </div>
+  <span class="header-badge">כלי מקצועי לסוכנים</span>
 </header>
 
 <div class="wrap">
   <div class="card">
-    <h2>בחר חברות להשוואה</h2>
-    <p class="sub">עד 3 חברות ביטוח + גיל הלקוח לקבלת המלצה מותאמת אישית</p>
+    <div class="card-title">בחר חברות להשוואה</div>
+    <div class="card-sub">עד 3 חברות + פרטי לקוח לקבלת המלצה מותאמת אישית</div>
 
     <div class="chips" id="chips">
       <button class="chip" data-name="מגדל" data-color="#1B3A6B" onclick="toggleChip(this)">מגדל</button>
@@ -116,7 +211,6 @@ footer{margin-top:40px;padding:20px 16px;border-top:1px solid #E8ECF0;text-align
       <button class="chip" data-name="הראל" data-color="#6C3483" onclick="toggleChip(this)">הראל</button>
       <button class="chip" data-name="כלל" data-color="#784212" onclick="toggleChip(this)">כלל</button>
       <button class="chip" data-name="איילון" data-color="#0E6655" onclick="toggleChip(this)">איילון</button>
-      <button class="chip" data-name="הכשרה" data-color="#1A5276" onclick="toggleChip(this)">הכשרה</button>
     </div>
 
     <div class="grid3">
@@ -126,11 +220,10 @@ footer{margin-top:40px;padding:20px 16px;border-top:1px solid #E8ECF0;text-align
     </div>
 
     <div class="grid4">
-      <div><label>גיל הלקוח ✱</label><input id="age" type="number" min="0" max="74" placeholder="לדוגמה: 35" oninput="upd()"></div>
+      <div><label>גיל הלקוח ✱</label><input id="age" type="number" min="0" max="74" placeholder="לדוגמה: 40" oninput="upd()"></div>
       <div><label>מין</label><select id="gender" onchange="upd()"><option value="">לא צוין</option><option>זכר</option><option>נקבה</option></select></div>
       <div><label>עישון</label><select id="smoke" onchange="upd()"><option value="">לא צוין</option><option>לא מעשן</option><option>מעשן</option></select></div>
-     <div><label>סכום ביטוח</label><select id="amount" onchange="upd()"><option value="">לא צוין</option><option>100,000 ₪</option><option>200,000 ₪</option><option>300,000 ₪</option><option>400,000 ₪</option><option>500,000 ₪</option></select></div>
-
+      <div><label>סכום ביטוח</label><select id="amount" onchange="upd()"><option value="">לא צוין</option><option>100,000 ₪</option><option>200,000 ₪</option><option>300,000 ₪</option><option>400,000 ₪</option><option>500,000 ₪</option></select></div>
     </div>
 
     <div class="age-hint" id="ageHint"></div>
@@ -152,296 +245,199 @@ footer{margin-top:40px;padding:20px 16px;border-top:1px solid #E8ECF0;text-align
 </div>
 
 <footer>
-  <p class="footer-warn">⚠️ אזהרה רגולטורית: המידע המוצג באתר זה הינו לצורך השוואה כללית בלבד ואינו מהווה ייעוץ ביטוחי. המידע המחייב הינו תנאי הפוליסה המלאים של כל חברת ביטוח בלבד. לפני כל החלטה יש להיוועץ עם סוכן ביטוח מורשה ולעיין בתנאי הפוליסה.</p>
-  <p class="footer-copy">© כל הזכויות שמורות | אתר זה נבנה על ידי <strong>משה ורנר</strong> — סוכן ביטוח מורשה</p>
+  <div class="footer-warn">⚠️ <strong>אזהרה רגולטורית:</strong> המידע המוצג באתר זה הינו לצורך השוואה כללית בלבד ואינו מהווה ייעוץ ביטוחי. המידע המחייב הינו תנאי הפוליסה המלאים של כל חברת ביטוח בלבד. לפני כל החלטה יש להיוועץ עם סוכן ביטוח מורשה ולעיין בתנאי הפוליסה.</div>
+  <div class="footer-copy">© כל הזכויות שמורות | <strong>משה ורנר</strong> — סוכן ביטוח מורשה | הנתונים מבוססים על פוליסות רשמיות</div>
 </footer>
 
 <script>
-var hisList = [];
-var lastResult = null;
-var lastReq = null;
-var curTab = 'cards';
-var fields = [document.getElementById('f1'), document.getElementById('f2'), document.getElementById('f3')];
+var hisList=[],lastResult=null,lastReq=null,curTab='cards';
+var fields=[document.getElementById('f1'),document.getElementById('f2'),document.getElementById('f3')];
+var CO_COLORS={מגדל:'#1B3A6B',הפניקס:'#C0392B',מנורה:'#1A5E2A',AIG:'#003087',הראל:'#6C3483',כלל:'#784212',איילון:'#0E6655'};
+var KEY_PARAMS=['סרטן חוזר','מחלות מכוסות','סכום ביטוח מקסימלי'];
 
-var CO_COLORS = {מגדל:"#1B3A6B",הפניקס:"#C0392B",מנורה:"#1A5E2A",AIG:"#003087",הראל:"#6C3483",כלל:"#784212",איילון:"#0E6655",הכשרה:"#1A5276"};
+function getColor(name,fb){for(var k in CO_COLORS){if(name&&name.includes(k))return CO_COLORS[k];}return fb||'#5D6D7E';}
+function vals(){return fields.map(function(f){return f.value.trim();}).filter(Boolean);}
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-function getColor(name, fb) {
-  for (var k in CO_COLORS) { if (name && name.includes(k)) return CO_COLORS[k]; }
-  return fb || '#5D6D7E';
-}
-
-function vals() {
-  return fields.map(function(f){ return f.value.trim(); }).filter(Boolean);
-}
-
-function toggleChip(el) {
-  var name = el.dataset.name, on = el.classList.contains('on');
-  if (on) {
-    el.classList.remove('on'); el.style.background=''; el.style.color=''; el.style.borderColor='';
-    fields.forEach(function(f){ if(f.value===name) f.value=''; });
-  } else {
-    if (vals().length >= 3) return;
-    var col = el.dataset.color;
-    el.classList.add('on'); el.style.background=col; el.style.color='#fff'; el.style.borderColor=col;
-    var e = fields.find(function(f){ return !f.value.trim(); });
-    if (e) e.value = name;
-  }
+function toggleChip(el){
+  var name=el.dataset.name,on=el.classList.contains('on');
+  if(on){el.classList.remove('on');el.style.background='';el.style.color='';el.style.borderColor='';fields.forEach(function(f){if(f.value===name)f.value='';});}
+  else{if(vals().length>=3)return;var col=el.dataset.color;el.classList.add('on');el.style.background=col;el.style.color='#fff';el.style.borderColor=col;var e=fields.find(function(f){return!f.value.trim();});if(e)e.value=name;}
   upd();
 }
 
-function nxt(e, i) {
-  if (e.key === 'Enter') {
-    if (i < 2) fields[i+1].focus();
-    else document.getElementById('age').focus();
-  }
+function nxt(e,i){if(e.key==='Enter'){if(i<2)fields[i+1].focus();else document.getElementById('age').focus();}}
+
+function getAgeRec(a){
+  if(!a)return'';
+  if(a<=17)return'ילד — פרמיה זולה מאוד, פרמיה קבועה (מגדל עד 25), כיסוי סכרת נעורים';
+  if(a<=25)return'צעיר — נעל פרמיה נמוכה לטווח ארוך, סכום ביטוח מקסימלי';
+  if(a<=40)return'גיל פרודוקטיבי — סכום גבוה, תגמולים חודשיים (AIG), ביטול שרידות (הפניקס)';
+  if(a<=55)return'גיל ביניים — סרטן חוזר 100% קריטי, צנתור לב מתחיל להיות רלוונטי';
+  if(a<=65)return'לפני פרישה — צנתור (איילון/כלל 100%), שים לב להפחתה מגיל 70';
+  return'גיל מבוגר — כיסויים אורתופדיים (איילון), הפחתה 50% מגיל 70 בכל החברות';
 }
 
-function getAgeGroup(a) {
-  if (a<=17) return 'ילד (0-17)';
-  if (a<=25) return 'צעיר (18-25)';
-  if (a<=40) return 'גיל ביניים צעיר (26-40)';
-  if (a<=55) return 'גיל ביניים (41-55)';
-  if (a<=65) return 'לפני פרישה (56-65)';
-  return 'גיל מבוגר (66+)';
+function upd(){
+  var cs=vals(),age=parseInt(document.getElementById('age').value)||null;
+  document.getElementById('goBtn').disabled=cs.length===0||!age;
+  var hint=document.getElementById('ageHint');
+  if(age){hint.style.display='block';hint.innerHTML='<b>גיל '+age+':</b> '+getAgeRec(age);}
+  else hint.style.display='none';
 }
 
-function getAgeRec(a) {
-  if (a<=17) return 'פרמיה זולה מאוד, כיסוי סכרת נעורים, 48 מחלות (AIG), פרמיה קבועה עד 25 (מגדל)';
-  if (a<=25) return 'נעל פרמיה נמוכה לטווח ארוך, כיסוי מקסימלי';
-  if (a<=40) return 'דגש: סכום ביטוח גבוה, תגמולים חודשיים (AIG), ביטול ימי שרידות (הפניקס)';
-  if (a<=55) return 'סרטן חוזר 100% קריטי (הפניקס/AIG), צינתור לב מתחיל להיות רלוונטי (איילון 100%)';
-  if (a<=65) return 'צינתור לב (איילון 100%), Mayo Clinic (מנורה), שים לב להפחתה מגיל 70';
-  return 'כיסויים אורתופדיים (איילון), הפחתת 50% מגיל 70 בכל החברות';
+function clr(){
+  fields.forEach(function(f){f.value='';});
+  ['age','gender','smoke','amount'].forEach(function(id){var el=document.getElementById(id);if(el.tagName==='SELECT')el.value='';else el.value='';});
+  document.querySelectorAll('.chip.on').forEach(function(c){c.classList.remove('on');c.style.background='';c.style.color='';c.style.borderColor='';});
+  document.getElementById('results').innerHTML='';
+  document.getElementById('errorBox').innerHTML='';
+  document.getElementById('wordBtn').style.display='none';
+  document.getElementById('ageHint').style.display='none';
+  document.getElementById('goBtn').disabled=true;
+  lastResult=null;lastReq=null;
 }
 
-function upd() {
-  var cs = vals(), age = parseInt(document.getElementById('age').value) || null;
-  document.getElementById('goBtn').disabled = cs.length === 0 || !age;
-  var hint = document.getElementById('ageHint');
-  if (age) {
-    hint.style.display = 'block';
-    hint.innerHTML = '<b>' + getAgeGroup(age) + '</b> — ' + getAgeRec(age);
-  } else {
-    hint.style.display = 'none';
-  }
+function setError(msg){document.getElementById('errorBox').innerHTML=msg?'<div class="error-box">❌ '+msg+'</div>':'';}
+
+var loadingMsgs=['מנתח את הפוליסות...','בודק כיסויים...','מכין המלצות...','כמעט מוכן...'];
+var loadingIdx=0,loadingTimer=null;
+function startLoading(cs,age){
+  loadingIdx=0;
+  var el=document.getElementById('results');
+  el.innerHTML='<div class="loading"><div class="loading-steps"><div class="step-dot"></div><div class="step-dot"></div><div class="step-dot"></div></div><div class="loading-title" id="loading-msg">'+loadingMsgs[0]+'</div><div class="loading-sub">'+cs.join(' | ')+(age?' | גיל '+age:'')+'</div><div class="loading-progress"><div class="loading-bar"></div></div></div>';
+  loadingTimer=setInterval(function(){loadingIdx=(loadingIdx+1)%loadingMsgs.length;var m=document.getElementById('loading-msg');if(m)m.textContent=loadingMsgs[loadingIdx];},1200);
 }
 
-function clr() {
-  fields.forEach(function(f){ f.value=''; });
-  document.getElementById('age').value = '';
-  document.getElementById('gender').value = '';
-  document.getElementById('smoke').value = '';
-  document.getElementById('amount').value = '';
-  document.querySelectorAll('.chip.on').forEach(function(c){
-    c.classList.remove('on'); c.style.background=''; c.style.color=''; c.style.borderColor='';
-  });
-  document.getElementById('results').innerHTML = '';
-  document.getElementById('errorBox').innerHTML = '';
-  document.getElementById('wordBtn').style.display = 'none';
-  document.getElementById('ageHint').style.display = 'none';
-  document.getElementById('goBtn').disabled = true;
-  lastResult = null; lastReq = null;
+async function doCompare(){
+  var cs=vals(),age=document.getElementById('age').value;
+  if(!cs.length||!age)return;
+  var btn=document.getElementById('goBtn');
+  btn.classList.add('pulse');setTimeout(function(){btn.classList.remove('pulse');},600);
+  var req={companies:cs,age:parseInt(age),gender:document.getElementById('gender').value,smoke:document.getElementById('smoke').value,amount:document.getElementById('amount').value};
+  lastReq=req;setError('');
+  document.getElementById('wordBtn').style.display='none';
+  startLoading(cs,age);
+  try{
+    var r=await fetch('/api/compare',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(req)});
+    var data=await r.json();
+    clearInterval(loadingTimer);
+    if(!r.ok)throw new Error(data.error||'שגיאה');
+    lastResult=data;
+    hisList.unshift({req:req,result:data,ts:new Date().toLocaleTimeString('he-IL')});
+    renderResult(data,req);renderHist();
+  }catch(e){clearInterval(loadingTimer);setError(e.message);document.getElementById('results').innerHTML='';}
 }
 
-function setError(msg) {
-  document.getElementById('errorBox').innerHTML = msg ? '<div class="error-box">❌ ' + msg + '</div>' : '';
-}
-
-function esc(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-async function doCompare() {
-  var cs = vals(), age = document.getElementById('age').value;
-  if (!cs.length || !age) return;
-  var req = {
-    companies: cs,
-    age: parseInt(age),
-    gender: document.getElementById('gender').value,
-    smoke: document.getElementById('smoke').value,
-    amount: document.getElementById('amount').value
-  };
-  lastReq = req;
-  setError('');
-  document.getElementById('wordBtn').style.display = 'none';
-  document.getElementById('results').innerHTML = '<div class="loading"><div class="loading-spin"></div><div style="font-size:16px;margin-bottom:8px">מנתח את הפוליסות...</div><div style="font-size:13px;color:#888">' + cs.join(' | ') + ' | גיל ' + age + '</div></div>';
-
-  try {
-    var r = await fetch('/api/compare', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(req)
-    });
-    var data = await r.json();
-    if (!r.ok) throw new Error(data.error || 'שגיאה');
-    lastResult = data;
-    hisList.unshift({req: req, result: data, ts: new Date().toLocaleTimeString('he-IL')});
-    renderResult(data, req);
-    renderHist();
-  } catch(e) {
-    setError(e.message);
-    document.getElementById('results').innerHTML = '';
-  }
-}
-
-function renderResult(data, req) {
-  var el = document.getElementById('results');
-  var cos = data.companies || [];
-  el.innerHTML = '';
-
-  if (data.summary) {
-    var sb = document.createElement('div');
-    sb.className = 'summary-banner';
-    sb.innerHTML = '<div style="font-size:13px;opacity:.8;margin-bottom:4px">סיכום</div>' + esc(data.summary);
-    el.appendChild(sb);
-  }
-
-  if (data.age_recommendation && req.age) {
-    var ar = document.createElement('div');
-    ar.className = 'age-rec';
-    ar.innerHTML = '<b>🎯 המלצה לגיל ' + req.age + ':</b> ' + esc(data.age_recommendation);
-    el.appendChild(ar);
-  }
-
-  var tabsDiv = document.createElement('div');
-  tabsDiv.className = 'tabs';
-  tabsDiv.innerHTML = ['cards','table','reco','diffs'].map(function(k){
-    var lbl = {cards:'כרטיסי חברות',table:'טבלת השוואה',reco:'המלצות',diffs:'הבדלים קריטיים'}[k];
-    return '<button class="tab' + (k===curTab?' on':'') + '" onclick="switchTab(\'' + k + '\')" id="tab-' + k + '">' + lbl + '</button>';
-  }).join('');
+function renderResult(data,req){
+  var el=document.getElementById('results');
+  var cos=data.companies||[];
+  el.innerHTML='';
+  if(data.summary){var sb=document.createElement('div');sb.className='summary-banner';sb.innerHTML='<div class="summary-label">סיכום</div><div class="summary-text">'+esc(data.summary)+'</div>';el.appendChild(sb);}
+  if(data.age_recommendation&&req.age){var ar=document.createElement('div');ar.className='age-rec';ar.innerHTML='<span class="age-rec-icon">🎯</span><b>המלצה לגיל '+req.age+':</b> '+esc(data.age_recommendation);el.appendChild(ar);}
+  var tabsDiv=document.createElement('div');tabsDiv.className='tabs';
+  tabsDiv.innerHTML=['cards','table','reco','diffs'].map(function(k){var lbl={cards:'כרטיסי חברות',table:'טבלת השוואה',reco:'המלצות',diffs:'הבדלים קריטיים'}[k];return'<button class="tab'+(k===curTab?' on':'')+'" onclick="switchTab(\''+k+'\')" id="tab-'+k+'">'+lbl+'</button>';}).join('');
   el.appendChild(tabsDiv);
-
-  var content = document.createElement('div');
-  content.id = 'tab-content';
-  el.appendChild(content);
-
-  document.getElementById('wordBtn').style.display = 'inline-block';
-  renderTab(data, req, curTab);
+  var content=document.createElement('div');content.id='tab-content';el.appendChild(content);
+  document.getElementById('wordBtn').style.display='inline-block';
+  renderTab(data,req,curTab);
 }
 
-function switchTab(t) {
-  curTab = t;
-  document.querySelectorAll('.tab').forEach(function(b){ b.classList.remove('on'); });
-  var tb = document.getElementById('tab-' + t);
-  if (tb) tb.classList.add('on');
-  if (lastResult) renderTab(lastResult, lastReq, t);
+function switchTab(t){
+  curTab=t;
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('on');});
+  var tb=document.getElementById('tab-'+t);if(tb)tb.classList.add('on');
+  if(lastResult)renderTab(lastResult,lastReq,t);
 }
 
-function renderTab(data, req, t) {
-  var content = document.getElementById('tab-content');
-  if (!content) return;
-  var cos = data.companies || [];
+function renderTab(data,req,t){
+  var content=document.getElementById('tab-content');
+  if(!content)return;
+  var cos=data.companies||[];
 
-  if (t === 'cards') {
-    var cols = Math.min(cos.length, 3);
-    content.innerHTML = '';
-    var grid = document.createElement('div');
-    grid.className = 'co-grid';
-    grid.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
-    cos.forEach(function(co) {
-      var col = getColor(co.name, co.color);
-      var fitClass = co.age_fit === 'מתאים מאוד' ? 'fit-great' : co.age_fit === 'מתאים' ? 'fit-ok' : 'fit-less';
-      var scores = [
-        {l:'כיסוי', v:co.score_coverage||80},
-        {l:'שירות', v:co.score_service||75},
-        {l:'פשטות', v:co.score_simplicity||70},
-        {l:'ערך', v:co.score_value||75}
-      ];
-      var barsHtml = scores.map(function(s){
-        return '<div class="score-row"><span class="score-label">' + s.l + '</span><div class="score-bar"><div class="score-fill" style="width:' + s.v + '%;background:' + col + '"></div></div><span class="score-num">' + s.v + '</span></div>';
-      }).join('');
-      var uniqueHtml = (co.unique||[]).map(function(u){
-        return '<div class="unique-item" style="background:' + col + '18;border-color:' + col + '">★ ' + esc(u) + '</div>';
-      }).join('');
-      var prosHtml = (co.pros||[]).map(function(p){ return '<div class="pc-item">✓ ' + esc(p) + '</div>'; }).join('');
-      var consHtml = (co.cons||[]).map(function(c){ return '<div class="pc-item">✗ ' + esc(c) + '</div>'; }).join('');
-      var card = document.createElement('div');
-      card.className = 'co-card';
-      card.innerHTML = '<div class="co-head" style="background:' + col + '"><div class="co-name">' + esc(co.name) + '</div><div class="co-prod">' + esc(co.product||'') + '</div></div><div class="co-body"><div class="kv-grid"><div class="kv"><div class="kv-label">מחלות</div><div class="kv-val">' + esc(co.diseases||'-') + '</div></div><div class="kv"><div class="kv-label">סכום מקס׳</div><div class="kv-val">' + esc(co.max_sum||'-') + '</div></div></div>' + (co.age_fit && req && req.age ? '<span class="age-fit-badge ' + fitClass + '">התאמה לגיל ' + req.age + ': ' + esc(co.age_fit) + '</span>' : '') + barsHtml + (uniqueHtml ? '<div class="unique-section"><div class="unique-label" style="color:' + col + '">★ ייחודי</div>' + uniqueHtml + '</div>' : '') + '<div class="pros-cons"><div class="pc-col"><div class="pc-head" style="color:#1E8449">✓ יתרונות</div>' + prosHtml + '</div><div class="pc-col"><div class="pc-head" style="color:#C0392B">✗ חסרונות</div>' + consHtml + '</div></div></div>';
+  if(t==='cards'){
+    var cols=Math.min(cos.length,3);
+    content.innerHTML='';
+    var grid=document.createElement('div');
+    grid.className='co-grid';
+    grid.style.gridTemplateColumns='repeat('+cols+',1fr)';
+    cos.forEach(function(co){
+      var col=getColor(co.name,co.color);
+      var fitClass=co.age_fit==='מתאים מאוד'?'fit-great':co.age_fit==='מתאים'?'fit-ok':'fit-less';
+      var scores=[{l:'כיסוי',v:co.score_coverage||80},{l:'שירות',v:co.score_service||75},{l:'פשטות',v:co.score_simplicity||70},{l:'ערך',v:co.score_value||75}];
+      var barsHtml=scores.map(function(s){return'<div class="score-row"><span class="score-label">'+s.l+'</span><div class="score-bar"><div class="score-fill" style="width:'+s.v+'%;background:'+col+'"></div></div><span class="score-num">'+s.v+'</span></div>';}).join('');
+      var uniqueHtml=(co.unique||[]).slice(0,3).map(function(u){return'<div class="unique-item" style="border-right-color:'+col+'">★ '+esc(u)+'</div>';}).join('');
+      var prosHtml=(co.pros||[]).slice(0,4).map(function(p){return'<div class="pc-item">✓ '+esc(p)+'</div>';}).join('');
+      var consHtml=(co.cons||[]).slice(0,3).map(function(c){return'<div class="pc-item">✗ '+esc(c)+'</div>';}).join('');
+      var card=document.createElement('div');
+      card.className='co-card';
+      card.innerHTML='<div class="co-head" style="background:'+col+'"><div class="co-head-accent"></div><div class="co-name">'+esc(co.name)+'</div><div class="co-prod">'+esc(co.product||'')+'</div>'+(co.age_fit&&req&&req.age?'<span class="co-fit-badge">'+esc(co.age_fit)+' לגיל '+req.age+'</span>':'')+'</div><div class="co-body"><div class="kv-grid"><div class="kv"><div class="kv-label">מחלות</div><div class="kv-val">'+esc(co.diseases||'-')+'</div></div><div class="kv"><div class="kv-label">סכום מקס׳</div><div class="kv-val" style="font-size:11px">'+esc((co.max_sum||'-').split(' ')[0])+'</div></div></div><div class="score-wrap">'+barsHtml+'</div>'+(uniqueHtml?'<div class="section-head">ייחודי</div>'+uniqueHtml:'')+'<div class="pros-cons"><div class="pc-col pc-col-pro"><div class="pc-head pc-head-pro">✓ יתרונות</div>'+prosHtml+'</div><div class="pc-col pc-col-con"><div class="pc-head pc-head-con">✗ חסרונות</div>'+consHtml+'</div></div></div>';
       grid.appendChild(card);
     });
     content.appendChild(grid);
 
-  } else if (t === 'table') {
-    var tbl = '<div style="overflow-x:auto"><table class="cmp-table"><thead><tr><th>פרמטר</th>' + cos.map(function(co){ return '<th class="co-th" style="background:' + getColor(co.name,co.color) + '">' + esc(co.name) + '</th>'; }).join('') + '</tr></thead><tbody>';
+  }else if(t==='table'){
+    var tbl='<div class="cmp-table-wrap"><table class="cmp-table"><thead><tr><th class="param-head">פרמטר</th>'+cos.map(function(co){return'<th style="background:'+getColor(co.name,co.color)+'">'+esc(co.name)+'</th>';}).join('')+'</tr></thead><tbody>';
     (data.comparison_table||[]).forEach(function(row,i){
-      tbl += '<tr style="background:' + (i%2?'#F7F8FA':'#fff') + '"><td style="font-weight:600">' + esc(row.param) + '</td>' + (row.values||[]).map(function(v){ return '<td class="co-td">' + esc(v) + '</td>'; }).join('') + '</tr>';
+      var isKey=KEY_PARAMS.some(function(k){return row.param&&row.param.includes(k);});
+      tbl+='<tr'+(isKey?' class="highlight-row"':'')+'><td class="param-cell">'+esc(row.param)+'</td>'+(row.values||[]).map(function(v){return'<td>'+esc(v)+'</td>';}).join('')+'</tr>';
     });
-    tbl += '</tbody></table></div>';
-    content.innerHTML = tbl;
+    tbl+='</tbody></table></div>';
+    content.innerHTML=tbl;
 
-  } else if (t === 'reco') {
-    content.innerHTML = '<div class="card" style="padding:0">' + (data.recommendations||[]).map(function(r){
-      var col = getColor(r.company);
-      return '<div class="reco-item"><div class="reco-bar" style="background:' + col + '"></div><div><div class="reco-profile">' + esc(r.profile) + '</div><div class="reco-detail"><span class="co-badge" style="background:' + col + '">' + esc(r.company) + '</span>' + esc(r.reason) + '</div></div></div>';
-    }).join('') + '</div>';
+  }else if(t==='reco'){
+    content.innerHTML='<div class="card" style="padding:0;overflow:hidden">'+(data.recommendations||[]).map(function(r){var col=getColor(r.company);return'<div class="reco-item"><div class="reco-bar" style="background:'+col+'"></div><div><div class="reco-profile">'+esc(r.profile)+'</div><div class="reco-detail"><span class="co-badge" style="background:'+col+'">'+esc(r.company)+'</span>'+esc(r.reason)+'</div></div></div>';}).join('')+'</div>';
 
-  } else if (t === 'diffs') {
-    content.innerHTML = '<div class="card" style="padding:16px 0"><h3 style="padding:0 16px 12px;font-size:16px;color:#C0392B">⚠️ הבדלים קריטיים</h3>' + (data.critical_diffs||[]).map(function(d,i){
-      return '<div class="diff-item"><div class="diff-num">' + (i+1) + '</div><div class="diff-text">' + esc(d) + '</div></div>';
-    }).join('') + '</div>';
+  }else if(t==='diffs'){
+    content.innerHTML='<div class="card" style="padding:20px 0 4px"><div style="padding:0 18px 14px;font-size:14px;font-weight:600;color:var(--red)">⚠️ הבדלים קריטיים שחשוב לדעת</div>'+(data.critical_diffs||[]).map(function(d,i){return'<div class="diff-item"><div class="diff-num">'+(i+1)+'</div><div class="diff-text">'+esc(d)+'</div></div>';}).join('')+'</div>';
   }
 }
 
-function renderHist() {
-  var ha = document.getElementById('histArea');
-  var hc = document.getElementById('histChips');
-  if (!hisList.length) { ha.style.display='none'; return; }
-  ha.style.display = 'block';
-  hc.innerHTML = hisList.map(function(h,i){
-    return '<button class="hist-chip" onclick="loadHist(' + i + ')">' + h.req.companies.join(' + ') + (h.req.age ? ' | גיל ' + h.req.age : '') + ' <span style="color:#aaa">(' + h.ts + ')</span></button>';
-  }).join('');
+function renderHist(){
+  var ha=document.getElementById('histArea'),hc=document.getElementById('histChips');
+  if(!hisList.length){ha.style.display='none';return;}
+  ha.style.display='block';
+  hc.innerHTML=hisList.map(function(h,i){return'<button class="hist-chip" onclick="loadHist('+i+')">'+h.req.companies.join(' + ')+(h.req.age?' | גיל '+h.req.age:'')+' <span style="color:#9AA5B4">('+h.ts+')</span></button>';}).join('');
 }
 
-function loadHist(i) {
-  lastResult = hisList[i].result;
-  lastReq = hisList[i].req;
-  renderResult(hisList[i].result, hisList[i].req);
-}
+function loadHist(i){lastResult=hisList[i].result;lastReq=hisList[i].req;renderResult(hisList[i].result,hisList[i].req);}
 
-async function exportWord() {
-  if (!lastResult || !lastReq) return;
-  var btn = document.getElementById('wordBtn');
-  btn.textContent = '⏳ מכין...'; btn.disabled = true;
-  try {
-    var docx = await import('https://esm.sh/docx@8.5.0');
-    var fileSaver = await import('https://esm.sh/file-saver@2.0.5');
+async function exportWord(){
+  if(!lastResult||!lastReq)return;
+  var btn=document.getElementById('wordBtn');btn.textContent='⏳ מכין...';btn.disabled=true;
+  try{
+    var docx=await import('https://esm.sh/docx@8.5.0');
+    var fileSaver=await import('https://esm.sh/file-saver@2.0.5');
     var Document=docx.Document,Packer=docx.Packer,Paragraph=docx.Paragraph,TextRun=docx.TextRun,Table=docx.Table,TableRow=docx.TableRow,TableCell=docx.TableCell,AlignmentType=docx.AlignmentType,BorderStyle=docx.BorderStyle,WidthType=docx.WidthType,ShadingType=docx.ShadingType,VerticalAlign=docx.VerticalAlign;
-    var saveAs = fileSaver.saveAs;
-    var cos = lastResult.companies || [];
-    var b1 = function(c){ return {style:BorderStyle.SINGLE,size:1,color:c||'CCCCCC'}; };
-    var aB = function(){ var b=b1(); return {top:b,bottom:b,left:b,right:b}; };
-    var colW = Math.floor(9360/(cos.length+1)); var pW = colW+200;
-    function hCell(t,bg,w){ return new TableCell({borders:aB(),width:{size:w,type:WidthType.DXA},shading:{fill:bg.replace('#',''),type:ShadingType.CLEAR},margins:{top:80,bottom:80,left:100,right:100},verticalAlign:VerticalAlign.CENTER,children:[new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:t,bold:true,size:20,color:'FFFFFF',font:'Arial'})]})]}); }
-    function dCell(t,w,bg,bold){ return new TableCell({borders:aB(),width:{size:w,type:WidthType.DXA},shading:{fill:bg||'FFFFFF',type:ShadingType.CLEAR},margins:{top:70,bottom:70,left:100,right:100},verticalAlign:VerticalAlign.CENTER,children:[new Paragraph({alignment:AlignmentType.RIGHT,children:[new TextRun({text:String(t||''),size:19,bold:!!bold,font:'Arial',color:'2C3E50'})]})]}); }
-    var tRows = [new TableRow({tableHeader:true,children:[hCell('פרמטר','2C3E50',pW),...cos.map(function(c){ return hCell(c.name,c.color.replace('#',''),colW); })]})];
-    (lastResult.comparison_table||[]).forEach(function(row,i){
-      var bg = i%2?'F4F6F7':'FFFFFF';
-      tRows.push(new TableRow({children:[dCell(row.param,pW,bg,true),...(row.values||[]).map(function(v){ return dCell(v,colW,bg); })]}));
-    });
-    var ageInfo = lastReq.age ? ' | גיל ' + lastReq.age + (lastReq.gender?' '+lastReq.gender:'') + (lastReq.smoke?' '+lastReq.smoke:'') : '';
-    var doc = new Document({title:'השוואת מחלות קשות',sections:[{properties:{page:{size:{width:12240,height:15840},margin:{top:900,right:900,bottom:900,left:900}}},children:[
-      new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:0,after:120},children:[new TextRun({text:'השוואת ביטוח מחלות קשות',bold:true,size:48,font:'Arial',color:'2C3E50'})]}),
-      new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:80,after:60},children:[new TextRun({text:lastReq.companies.join('  |  ')+ageInfo,size:26,font:'Arial',color:'3498DB'})]}),
-      ...(lastResult.age_recommendation&&lastReq.age?[new Paragraph({spacing:{before:80,after:120},children:[new TextRun({text:'המלצה לגיל '+lastReq.age+': '+lastResult.age_recommendation,size:22,font:'Arial',color:'1A5276'})]})]:[]),
-      new Paragraph({spacing:{before:0,after:120},children:[new TextRun({text:'טבלת השוואה',bold:true,size:28,font:'Arial',color:'2C3E50'})],border:{bottom:{style:BorderStyle.SINGLE,size:6,color:'3498DB',space:4}}}),
+    var saveAs=fileSaver.saveAs;
+    var cos=lastResult.companies||[];
+    var b1=function(c){return{style:BorderStyle.SINGLE,size:1,color:c||'CCCCCC'};};
+    var aB=function(){var b=b1();return{top:b,bottom:b,left:b,right:b};};
+    var colW=Math.floor(9360/(cos.length+1));var pW=colW+200;
+    function hCell(t,bg,w){return new TableCell({borders:aB(),width:{size:w,type:WidthType.DXA},shading:{fill:bg.replace('#',''),type:ShadingType.CLEAR},margins:{top:80,bottom:80,left:100,right:100},verticalAlign:VerticalAlign.CENTER,children:[new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:t,bold:true,size:20,color:'FFFFFF',font:'Arial'})]})]});}
+    function dCell(t,w,bg,bold){return new TableCell({borders:aB(),width:{size:w,type:WidthType.DXA},shading:{fill:bg||'FFFFFF',type:ShadingType.CLEAR},margins:{top:70,bottom:70,left:100,right:100},verticalAlign:VerticalAlign.CENTER,children:[new Paragraph({alignment:AlignmentType.RIGHT,children:[new TextRun({text:String(t||''),size:19,bold:!!bold,font:'Arial',color:'2C3E50'})]})]});}
+    var tRows=[new TableRow({tableHeader:true,children:[hCell('פרמטר','1B2E4B',pW),...cos.map(function(c){return hCell(c.name,c.color.replace('#',''),colW);})]})];
+    (lastResult.comparison_table||[]).forEach(function(row,i){var bg=i%2?'F4F6F9':'FFFFFF';tRows.push(new TableRow({children:[dCell(row.param,pW,bg,true),...(row.values||[]).map(function(v){return dCell(v,colW,bg);})]})  );});
+    var ageInfo=lastReq.age?' | גיל '+lastReq.age+(lastReq.gender?' '+lastReq.gender:'')+(lastReq.smoke?' '+lastReq.smoke:''):'';
+    var doc=new Document({title:'השוואת מחלות קשות — מרכז ביטוח ורנר',sections:[{properties:{page:{size:{width:12240,height:15840},margin:{top:900,right:900,bottom:900,left:900}}},children:[
+      new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:0,after:100},children:[new TextRun({text:'מרכז ביטוח ורנר',bold:true,size:32,font:'Arial',color:'1B2E4B'})]}),
+      new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:0,after:120},children:[new TextRun({text:'השוואת ביטוח מחלות קשות',bold:true,size:48,font:'Arial',color:'1B2E4B'})]}),
+      new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:60,after:60},children:[new TextRun({text:lastReq.companies.join('  |  ')+ageInfo,size:26,font:'Arial',color:'0E7C6B'})]}),
+      ...(lastResult.age_recommendation&&lastReq.age?[new Paragraph({spacing:{before:80,after:120},children:[new TextRun({text:'המלצה לגיל '+lastReq.age+': '+lastResult.age_recommendation,size:22,font:'Arial',color:'0E7C6B'})]})]:[]),
+      new Paragraph({spacing:{before:0,after:120},children:[new TextRun({text:'טבלת השוואה',bold:true,size:28,font:'Arial',color:'1B2E4B'})],border:{bottom:{style:BorderStyle.SINGLE,size:6,color:'C9A84C',space:4}}}),
       new Table({width:{size:9360,type:WidthType.DXA},columnWidths:[pW,...cos.map(function(){return colW;})],rows:tRows}),
-      new Paragraph({spacing:{before:280,after:100},children:[new TextRun({text:'המלצות',bold:true,size:28,font:'Arial',color:'2C3E50'})],border:{bottom:{style:BorderStyle.SINGLE,size:6,color:'3498DB',space:4}}}),
-      ...(lastResult.recommendations||[]).map(function(r){return new Paragraph({spacing:{before:50,after:50},children:[new TextRun({text:r.profile+': ',bold:true,font:'Arial',size:21,color:'2C3E50'}),new TextRun({text:r.company+' — '+r.reason,font:'Arial',size:21,color:'2C3E50'})]})}),
-      new Paragraph({spacing:{before:280,after:100},children:[new TextRun({text:'הבדלים קריטיים',bold:true,size:28,font:'Arial',color:'2C3E50'})],border:{bottom:{style:BorderStyle.SINGLE,size:6,color:'3498DB',space:4}}}),
+      new Paragraph({spacing:{before:280,after:100},children:[new TextRun({text:'המלצות לפי פרופיל לקוח',bold:true,size:28,font:'Arial',color:'1B2E4B'})],border:{bottom:{style:BorderStyle.SINGLE,size:6,color:'C9A84C',space:4}}}),
+      ...(lastResult.recommendations||[]).map(function(r){return new Paragraph({spacing:{before:50,after:50},children:[new TextRun({text:r.profile+': ',bold:true,font:'Arial',size:21,color:'1B2E4B'}),new TextRun({text:r.company+' — '+r.reason,font:'Arial',size:21,color:'2C3E50'})]});}),
+      new Paragraph({spacing:{before:280,after:100},children:[new TextRun({text:'הבדלים קריטיים',bold:true,size:28,font:'Arial',color:'1B2E4B'})],border:{bottom:{style:BorderStyle.SINGLE,size:6,color:'C9A84C',space:4}}}),
       ...(lastResult.critical_diffs||[]).map(function(d){return new Paragraph({spacing:{before:50,after:50},children:[new TextRun({text:'• '+d,font:'Arial',size:21,color:'2C3E50'})]})}),
       new Paragraph({spacing:{before:240,after:40},alignment:AlignmentType.CENTER,children:[new TextRun({text:'מסמך זה מכיל מידע השוואתי בלבד ואינו מהווה ייעוץ ביטוחי. המידע המחייב הינו תנאי הפוליסה המלאים.',size:17,font:'Arial',italics:true,color:'95A5A6'})]}),
-      new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:'© כל הזכויות שמורות | משה ורנר — סוכן ביטוח מורשה',size:17,font:'Arial',color:'888888'})]})
+      new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:'© מרכז ביטוח ורנר | משה ורנר — סוכן ביטוח מורשה',size:17,font:'Arial',color:'888888'})]})
     ]}]});
-    var buf = await Packer.toBlob(doc);
-    saveAs(buf, 'השוואה_' + lastReq.companies.join('_') + (lastReq.age?'_גיל'+lastReq.age:'') + '.docx');
-  } catch(e) {
-    setError('שגיאה בייצוא Word: ' + e.message);
-  }
-  btn.textContent = '📄 ייצא Word'; btn.disabled = false;
+    var buf=await Packer.toBlob(doc);
+    saveAs(buf,'השוואה_'+lastReq.companies.join('_')+(lastReq.age?'_גיל'+lastReq.age:'')+'.docx');
+  }catch(e){setError('שגיאה בייצוא Word: '+e.message);}
+  btn.textContent='📄 ייצא Word';btn.disabled=false;
 }
 </script>
 </body>
 </html>
-
