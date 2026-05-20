@@ -21,12 +21,11 @@ app.post('/api/compare', async (req, res) => {
 
   const list = companies.join(', ');
   const isSingle = companies.length === 1;
-  const ageCtx = age ? `לקוח גיל ${age}${gender ? ' ' + gender : ''}${smoke ? ' ' + smoke : ''}.` : '';
-  const ageNote = age ? `התאם לגיל ${age}.` : '';
+  const ageCtx = age ? `לקוח גיל ${age}${gender ? ' ' + gender : ''}.` : '';
 
   const prompt = isSingle
-    ? `ביטוח מחלות קשות ישראל. ${ageCtx} נתח ${list}. ${ageNote} JSON בלבד: {"summary":"","product_name":"","max_sum":"","diseases_count":"","unique":[],"pros":[],"cons":[],"age_recommendation":""}`
-    : `ביטוח מחלות קשות ישראל. ${ageCtx} השווה ${list}. ${ageNote} 6 שורות השוואה, 3 המלצות. JSON בלבד: {"companies":[{"name":"","product":"","color":"#1B3A6B","max_sum":"","diseases":"","pros":[],"cons":[],"unique":[],"score_coverage":80,"score_service":75,"score_simplicity":70,"score_value":75,"age_fit":"מתאים"}],"comparison_table":[{"param":"","values":[]}],"recommendations":[{"profile":"","company":"","reason":""}],"critical_diffs":[],"summary":"","age_recommendation":""}`;
+    ? `אתה מומחה ביטוח ישראל. ${ageCtx} נתח פוליסת מחלות קשות של ${list}. החזר JSON בלבד ללא טקסט נוסף: {"summary":"טקסט","product_name":"","max_sum":"","diseases_count":"","unique":["","",""],"pros":["","",""],"cons":["",""],"age_recommendation":""}`
+    : `אתה מומחה ביטוח ישראל. ${ageCtx} השווה מחלות קשות: ${list}. החזר JSON בלבד ללא טקסט נוסף: {"summary":"","age_recommendation":"","companies":[{"name":"","product":"","color":"#1B3A6B","max_sum":"","diseases":"","pros":["",""],"cons":["",""],"unique":["",""],"score_coverage":80,"score_service":75,"score_simplicity":70,"score_value":75,"age_fit":""}],"comparison_table":[{"param":"","values":["",""]}],"recommendations":[{"profile":"","company":"","reason":""}],"critical_diffs":["",""]}`;
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -38,7 +37,7 @@ app.post('/api/compare', async (req, res) => {
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 2000,
+        max_tokens: 4000,
         messages: [{ role: 'user', content: prompt }],
       }),
     });
